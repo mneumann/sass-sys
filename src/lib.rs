@@ -189,4 +189,10 @@ extern "C" {
     pub fn sass_string_unquote(str: *const ::libc::c_char)
      -> *mut ::libc::c_char;
     pub fn libsass_version() -> *const ::libc::c_char;
+
+    // sass2scss.h
+    pub fn sass2scss(sass: *const ::libc::c_char, options: ::libc::c_int)
+      -> *mut ::libc::c_char;
+    pub fn sass2scss_version() -> *const ::libc::c_char;
+
 }

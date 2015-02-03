@@ -5,5 +5,5 @@ fn main() {
         Ok(_) => return,
         Err(_) => {}
     }
-    println!("cargo:rustc-flags=-l sass -L ../../sass/libsass/lib/");
+    println!("cargo:rustc-flags=-l sass -L ../../sass/libsass/lib/ -l c++");
 }
