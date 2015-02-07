@@ -336,4 +336,10 @@ extern "C" {
    -> *mut ::libc::c_char;
   pub fn sass_option_push_include_path(options: *mut Struct_Sass_Options,
                                        path: *const ::libc::c_char) -> ();
+
+  // sass2scss.h
+  pub fn sass2scss(sass: *const ::libc::c_char, options: ::libc::c_int)
+   -> *mut ::libc::c_char;
+  pub fn sass2scss_version() -> *const ::libc::c_char;
+
 }
