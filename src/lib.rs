@@ -45,154 +45,295 @@ pub const SASS_STYLE_NESTED: ::libc::c_uint = 0;
 pub const SASS_STYLE_EXPANDED: ::libc::c_uint = 1;
 pub const SASS_STYLE_COMPACT: ::libc::c_uint = 2;
 pub const SASS_STYLE_COMPRESSED: ::libc::c_uint = 3;
+
+pub enum Struct_Sass_Compiler { }
+pub enum Struct_Sass_Options { }
+pub enum Struct_Sass_Context { }
+pub enum Struct_Sass_File_Context { }
+pub enum Struct_Sass_Data_Context { }
+
 extern "C" {
-    pub fn sass_value_get_tag(v: *const Union_Sass_Value) -> Enum_Sass_Tag;
-    pub fn sass_value_is_null(v: *const Union_Sass_Value) -> u8;
-    pub fn sass_value_is_number(v: *const Union_Sass_Value) -> u8;
-    pub fn sass_value_is_string(v: *const Union_Sass_Value) -> u8;
-    pub fn sass_value_is_boolean(v: *const Union_Sass_Value) -> u8;
-    pub fn sass_value_is_color(v: *const Union_Sass_Value) -> u8;
-    pub fn sass_value_is_list(v: *const Union_Sass_Value) -> u8;
-    pub fn sass_value_is_map(v: *const Union_Sass_Value) -> u8;
-    pub fn sass_value_is_error(v: *const Union_Sass_Value) -> u8;
-    pub fn sass_value_is_warning(v: *const Union_Sass_Value) -> u8;
-    pub fn sass_number_get_value(v: *const Union_Sass_Value)
-     -> ::libc::c_double;
-    pub fn sass_number_set_value(v: *mut Union_Sass_Value,
-                                 value: ::libc::c_double) -> ();
-    pub fn sass_number_get_unit(v: *const Union_Sass_Value)
-     -> *const ::libc::c_char;
-    pub fn sass_number_set_unit(v: *mut Union_Sass_Value,
-                                unit: *mut ::libc::c_char) -> ();
-    pub fn sass_string_get_value(v: *const Union_Sass_Value)
-     -> *const ::libc::c_char;
-    pub fn sass_string_set_value(v: *mut Union_Sass_Value,
-                                 value: *mut ::libc::c_char) -> ();
-    pub fn sass_boolean_get_value(v: *const Union_Sass_Value) -> u8;
-    pub fn sass_boolean_set_value(v: *mut Union_Sass_Value, value: u8) -> ();
-    pub fn sass_color_get_r(v: *const Union_Sass_Value) -> ::libc::c_double;
-    pub fn sass_color_set_r(v: *mut Union_Sass_Value, r: ::libc::c_double)
-     -> ();
-    pub fn sass_color_get_g(v: *const Union_Sass_Value) -> ::libc::c_double;
-    pub fn sass_color_set_g(v: *mut Union_Sass_Value, g: ::libc::c_double)
-     -> ();
-    pub fn sass_color_get_b(v: *const Union_Sass_Value) -> ::libc::c_double;
-    pub fn sass_color_set_b(v: *mut Union_Sass_Value, b: ::libc::c_double)
-     -> ();
-    pub fn sass_color_get_a(v: *const Union_Sass_Value) -> ::libc::c_double;
-    pub fn sass_color_set_a(v: *mut Union_Sass_Value, a: ::libc::c_double)
-     -> ();
-    pub fn sass_list_get_length(v: *const Union_Sass_Value) -> size_t;
-    pub fn sass_list_get_separator(v: *const Union_Sass_Value)
-     -> Enum_Sass_Separator;
-    pub fn sass_list_set_separator(v: *mut Union_Sass_Value,
-                                   value: Enum_Sass_Separator) -> ();
-    pub fn sass_list_get_value(v: *const Union_Sass_Value, i: size_t)
-     -> *mut Union_Sass_Value;
-    pub fn sass_list_set_value(v: *mut Union_Sass_Value, i: size_t,
-                               value: *mut Union_Sass_Value) -> ();
-    pub fn sass_map_get_length(v: *const Union_Sass_Value) -> size_t;
-    pub fn sass_map_get_key(v: *const Union_Sass_Value, i: size_t)
-     -> *mut Union_Sass_Value;
-    pub fn sass_map_set_key(v: *mut Union_Sass_Value, i: size_t,
+  pub fn sass_value_get_tag(v: *const Union_Sass_Value) -> Enum_Sass_Tag;
+  pub fn sass_value_is_null(v: *const Union_Sass_Value) -> u8;
+  pub fn sass_value_is_number(v: *const Union_Sass_Value) -> u8;
+  pub fn sass_value_is_string(v: *const Union_Sass_Value) -> u8;
+  pub fn sass_value_is_boolean(v: *const Union_Sass_Value) -> u8;
+  pub fn sass_value_is_color(v: *const Union_Sass_Value) -> u8;
+  pub fn sass_value_is_list(v: *const Union_Sass_Value) -> u8;
+  pub fn sass_value_is_map(v: *const Union_Sass_Value) -> u8;
+  pub fn sass_value_is_error(v: *const Union_Sass_Value) -> u8;
+  pub fn sass_value_is_warning(v: *const Union_Sass_Value) -> u8;
+  pub fn sass_number_get_value(v: *const Union_Sass_Value)
+   -> ::libc::c_double;
+  pub fn sass_number_set_value(v: *mut Union_Sass_Value,
+                               value: ::libc::c_double) -> ();
+  pub fn sass_number_get_unit(v: *const Union_Sass_Value)
+   -> *const ::libc::c_char;
+  pub fn sass_number_set_unit(v: *mut Union_Sass_Value,
+                              unit: *mut ::libc::c_char) -> ();
+  pub fn sass_string_get_value(v: *const Union_Sass_Value)
+   -> *const ::libc::c_char;
+  pub fn sass_string_set_value(v: *mut Union_Sass_Value,
+                               value: *mut ::libc::c_char) -> ();
+  pub fn sass_boolean_get_value(v: *const Union_Sass_Value) -> u8;
+  pub fn sass_boolean_set_value(v: *mut Union_Sass_Value, value: u8) -> ();
+  pub fn sass_color_get_r(v: *const Union_Sass_Value) -> ::libc::c_double;
+  pub fn sass_color_set_r(v: *mut Union_Sass_Value, r: ::libc::c_double)
+   -> ();
+  pub fn sass_color_get_g(v: *const Union_Sass_Value) -> ::libc::c_double;
+  pub fn sass_color_set_g(v: *mut Union_Sass_Value, g: ::libc::c_double)
+   -> ();
+  pub fn sass_color_get_b(v: *const Union_Sass_Value) -> ::libc::c_double;
+  pub fn sass_color_set_b(v: *mut Union_Sass_Value, b: ::libc::c_double)
+   -> ();
+  pub fn sass_color_get_a(v: *const Union_Sass_Value) -> ::libc::c_double;
+  pub fn sass_color_set_a(v: *mut Union_Sass_Value, a: ::libc::c_double)
+   -> ();
+  pub fn sass_list_get_length(v: *const Union_Sass_Value) -> size_t;
+  pub fn sass_list_get_separator(v: *const Union_Sass_Value)
+   -> Enum_Sass_Separator;
+  pub fn sass_list_set_separator(v: *mut Union_Sass_Value,
+                                 value: Enum_Sass_Separator) -> ();
+  pub fn sass_list_get_value(v: *const Union_Sass_Value, i: size_t)
+   -> *mut Union_Sass_Value;
+  pub fn sass_list_set_value(v: *mut Union_Sass_Value, i: size_t,
+                             value: *mut Union_Sass_Value) -> ();
+  pub fn sass_map_get_length(v: *const Union_Sass_Value) -> size_t;
+  pub fn sass_map_get_key(v: *const Union_Sass_Value, i: size_t)
+   -> *mut Union_Sass_Value;
+  pub fn sass_map_set_key(v: *mut Union_Sass_Value, i: size_t,
+                          arg1: *mut Union_Sass_Value) -> ();
+  pub fn sass_map_get_value(v: *const Union_Sass_Value, i: size_t)
+   -> *mut Union_Sass_Value;
+  pub fn sass_map_set_value(v: *mut Union_Sass_Value, i: size_t,
                             arg1: *mut Union_Sass_Value) -> ();
-    pub fn sass_map_get_value(v: *const Union_Sass_Value, i: size_t)
-     -> *mut Union_Sass_Value;
-    pub fn sass_map_set_value(v: *mut Union_Sass_Value, i: size_t,
-                              arg1: *mut Union_Sass_Value) -> ();
-    pub fn sass_error_get_message(v: *const Union_Sass_Value)
-     -> *mut ::libc::c_char;
-    pub fn sass_error_set_message(v: *mut Union_Sass_Value,
+  pub fn sass_error_get_message(v: *const Union_Sass_Value)
+   -> *mut ::libc::c_char;
+  pub fn sass_error_set_message(v: *mut Union_Sass_Value,
+                                msg: *mut ::libc::c_char) -> ();
+  pub fn sass_warning_get_message(v: *const Union_Sass_Value)
+   -> *mut ::libc::c_char;
+  pub fn sass_warning_set_message(v: *mut Union_Sass_Value,
                                   msg: *mut ::libc::c_char) -> ();
-    pub fn sass_warning_get_message(v: *const Union_Sass_Value)
-     -> *mut ::libc::c_char;
-    pub fn sass_warning_set_message(v: *mut Union_Sass_Value,
-                                    msg: *mut ::libc::c_char) -> ();
-    pub fn sass_make_null() -> *mut Union_Sass_Value;
-    pub fn sass_make_boolean(val: u8) -> *mut Union_Sass_Value;
-    pub fn sass_make_string(val: *const ::libc::c_char)
-     -> *mut Union_Sass_Value;
-    pub fn sass_make_number(val: ::libc::c_double,
-                            unit: *const ::libc::c_char)
-     -> *mut Union_Sass_Value;
-    pub fn sass_make_color(r: ::libc::c_double, g: ::libc::c_double,
-                           b: ::libc::c_double, a: ::libc::c_double)
-     -> *mut Union_Sass_Value;
-    pub fn sass_make_list(len: size_t, sep: Enum_Sass_Separator)
-     -> *mut Union_Sass_Value;
-    pub fn sass_make_map(len: size_t) -> *mut Union_Sass_Value;
-    pub fn sass_make_error(msg: *const ::libc::c_char)
-     -> *mut Union_Sass_Value;
-    pub fn sass_make_warning(msg: *const ::libc::c_char)
-     -> *mut Union_Sass_Value;
-    pub fn sass_delete_value(val: *mut Union_Sass_Value) -> ();
-    pub fn sass_clone_value(val: *const Union_Sass_Value)
-     -> *mut Union_Sass_Value;
-    pub fn sass_make_importer(arg1: Sass_C_Import_Fn,
-                              cookie: *mut ::libc::c_void)
-     -> Sass_C_Import_Callback;
-    pub fn sass_import_get_function(_fn: Sass_C_Import_Callback)
-     -> Sass_C_Import_Fn;
-    pub fn sass_import_get_cookie(_fn: Sass_C_Import_Callback)
-     -> *mut ::libc::c_void;
-    pub fn sass_delete_importer(_fn: Sass_C_Import_Callback) -> ();
-    pub fn sass_make_import_list(length: size_t)
-     -> *mut *mut Struct_Sass_Import;
-    pub fn sass_make_import_entry(path: *const ::libc::c_char,
-                                  source: *mut ::libc::c_char,
-                                  srcmap: *mut ::libc::c_char)
-     -> *mut Struct_Sass_Import;
-    pub fn sass_make_import(path: *const ::libc::c_char,
-                            base: *const ::libc::c_char,
-                            source: *mut ::libc::c_char,
-                            srcmap: *mut ::libc::c_char)
-     -> *mut Struct_Sass_Import;
-    pub fn sass_import_set_list_entry(list: *mut *mut Struct_Sass_Import,
-                                      idx: size_t,
-                                      entry: *mut Struct_Sass_Import) -> ();
-    pub fn sass_import_get_list_entry(list: *mut *mut Struct_Sass_Import,
-                                      idx: size_t) -> *mut Struct_Sass_Import;
-    pub fn sass_import_get_path(arg1: *mut Struct_Sass_Import)
-     -> *const ::libc::c_char;
-    pub fn sass_import_get_base(arg1: *mut Struct_Sass_Import)
-     -> *const ::libc::c_char;
-    pub fn sass_import_get_source(arg1: *mut Struct_Sass_Import)
-     -> *const ::libc::c_char;
-    pub fn sass_import_get_srcmap(arg1: *mut Struct_Sass_Import)
-     -> *const ::libc::c_char;
-    pub fn sass_import_take_source(arg1: *mut Struct_Sass_Import)
-     -> *mut ::libc::c_char;
-    pub fn sass_import_take_srcmap(arg1: *mut Struct_Sass_Import)
-     -> *mut ::libc::c_char;
-    pub fn sass_delete_import_list(arg1: *mut *mut Struct_Sass_Import) -> ();
-    pub fn sass_delete_import(arg1: *mut Struct_Sass_Import) -> ();
-    pub fn sass_make_function_list(length: size_t) -> Sass_C_Function_List;
-    pub fn sass_make_function(signature: *const ::libc::c_char,
-                              _fn: Sass_C_Function,
-                              cookie: *mut ::libc::c_void)
-     -> Sass_C_Function_Callback;
-    pub fn sass_function_get_list_entry(list: Sass_C_Function_List,
-                                        pos: size_t)
-     -> Sass_C_Function_Callback;
-    pub fn sass_function_set_list_entry(list: Sass_C_Function_List,
-                                        pos: size_t,
-                                        cb: Sass_C_Function_Callback) -> ();
-    pub fn sass_function_get_signature(_fn: Sass_C_Function_Callback)
-     -> *const ::libc::c_char;
-    pub fn sass_function_get_function(_fn: Sass_C_Function_Callback)
-     -> Sass_C_Function;
-    pub fn sass_function_get_cookie(_fn: Sass_C_Function_Callback)
-     -> *mut ::libc::c_void;
-    pub fn sass_string_quote(str: *const ::libc::c_char,
-                             quotemark: ::libc::c_char)
-     -> *mut ::libc::c_char;
-    pub fn sass_string_unquote(str: *const ::libc::c_char)
-     -> *mut ::libc::c_char;
-    pub fn libsass_version() -> *const ::libc::c_char;
-
-    // sass2scss.h
-    pub fn sass2scss(sass: *const ::libc::c_char, options: ::libc::c_int)
-      -> *mut ::libc::c_char;
-    pub fn sass2scss_version() -> *const ::libc::c_char;
-
+  pub fn sass_make_null() -> *mut Union_Sass_Value;
+  pub fn sass_make_boolean(val: u8) -> *mut Union_Sass_Value;
+  pub fn sass_make_string(val: *const ::libc::c_char)
+   -> *mut Union_Sass_Value;
+  pub fn sass_make_number(val: ::libc::c_double,
+                          unit: *const ::libc::c_char)
+   -> *mut Union_Sass_Value;
+  pub fn sass_make_color(r: ::libc::c_double, g: ::libc::c_double,
+                         b: ::libc::c_double, a: ::libc::c_double)
+   -> *mut Union_Sass_Value;
+  pub fn sass_make_list(len: size_t, sep: Enum_Sass_Separator)
+   -> *mut Union_Sass_Value;
+  pub fn sass_make_map(len: size_t) -> *mut Union_Sass_Value;
+  pub fn sass_make_error(msg: *const ::libc::c_char)
+   -> *mut Union_Sass_Value;
+  pub fn sass_make_warning(msg: *const ::libc::c_char)
+   -> *mut Union_Sass_Value;
+  pub fn sass_delete_value(val: *mut Union_Sass_Value) -> ();
+  pub fn sass_clone_value(val: *const Union_Sass_Value)
+   -> *mut Union_Sass_Value;
+  pub fn sass_make_importer(arg1: Sass_C_Import_Fn,
+                            cookie: *mut ::libc::c_void)
+   -> Sass_C_Import_Callback;
+  pub fn sass_import_get_function(_fn: Sass_C_Import_Callback)
+   -> Sass_C_Import_Fn;
+  pub fn sass_import_get_cookie(_fn: Sass_C_Import_Callback)
+   -> *mut ::libc::c_void;
+  pub fn sass_delete_importer(_fn: Sass_C_Import_Callback) -> ();
+  pub fn sass_make_import_list(length: size_t)
+   -> *mut *mut Struct_Sass_Import;
+  pub fn sass_make_import_entry(path: *const ::libc::c_char,
+                                source: *mut ::libc::c_char,
+                                srcmap: *mut ::libc::c_char)
+   -> *mut Struct_Sass_Import;
+  pub fn sass_make_import(path: *const ::libc::c_char,
+                          base: *const ::libc::c_char,
+                          source: *mut ::libc::c_char,
+                          srcmap: *mut ::libc::c_char)
+   -> *mut Struct_Sass_Import;
+  pub fn sass_import_set_list_entry(list: *mut *mut Struct_Sass_Import,
+                                    idx: size_t,
+                                    entry: *mut Struct_Sass_Import) -> ();
+  pub fn sass_import_get_list_entry(list: *mut *mut Struct_Sass_Import,
+                                    idx: size_t) -> *mut Struct_Sass_Import;
+  pub fn sass_import_get_path(arg1: *mut Struct_Sass_Import)
+   -> *const ::libc::c_char;
+  pub fn sass_import_get_base(arg1: *mut Struct_Sass_Import)
+   -> *const ::libc::c_char;
+  pub fn sass_import_get_source(arg1: *mut Struct_Sass_Import)
+   -> *const ::libc::c_char;
+  pub fn sass_import_get_srcmap(arg1: *mut Struct_Sass_Import)
+   -> *const ::libc::c_char;
+  pub fn sass_import_take_source(arg1: *mut Struct_Sass_Import)
+   -> *mut ::libc::c_char;
+  pub fn sass_import_take_srcmap(arg1: *mut Struct_Sass_Import)
+   -> *mut ::libc::c_char;
+  pub fn sass_delete_import_list(arg1: *mut *mut Struct_Sass_Import) -> ();
+  pub fn sass_delete_import(arg1: *mut Struct_Sass_Import) -> ();
+  pub fn sass_make_function_list(length: size_t) -> Sass_C_Function_List;
+  pub fn sass_make_function(signature: *const ::libc::c_char,
+                            _fn: Sass_C_Function,
+                            cookie: *mut ::libc::c_void)
+   -> Sass_C_Function_Callback;
+  pub fn sass_function_get_list_entry(list: Sass_C_Function_List,
+                                      pos: size_t)
+   -> Sass_C_Function_Callback;
+  pub fn sass_function_set_list_entry(list: Sass_C_Function_List,
+                                      pos: size_t,
+                                      cb: Sass_C_Function_Callback) -> ();
+  pub fn sass_function_get_signature(_fn: Sass_C_Function_Callback)
+   -> *const ::libc::c_char;
+  pub fn sass_function_get_function(_fn: Sass_C_Function_Callback)
+   -> Sass_C_Function;
+  pub fn sass_function_get_cookie(_fn: Sass_C_Function_Callback)
+   -> *mut ::libc::c_void;
+  pub fn sass_string_quote(str: *const ::libc::c_char,
+                           quotemark: ::libc::c_char)
+   -> *mut ::libc::c_char;
+  pub fn sass_string_unquote(str: *const ::libc::c_char)
+   -> *mut ::libc::c_char;
+  pub fn libsass_version() -> *const ::libc::c_char;
+  pub fn sass_make_options() -> *mut Struct_Sass_Options;
+  pub fn sass_make_file_context(input_path: *const ::libc::c_char)
+   -> *mut Struct_Sass_File_Context;
+  pub fn sass_make_data_context(source_string: *mut ::libc::c_char)
+   -> *mut Struct_Sass_Data_Context;
+  pub fn sass_compile_file_context(ctx: *mut Struct_Sass_File_Context)
+   -> ::libc::c_int;
+  pub fn sass_compile_data_context(ctx: *mut Struct_Sass_Data_Context)
+   -> ::libc::c_int;
+  pub fn sass_make_file_compiler(file_ctx: *mut Struct_Sass_File_Context)
+   -> *mut Struct_Sass_Compiler;
+  pub fn sass_make_data_compiler(data_ctx: *mut Struct_Sass_Data_Context)
+   -> *mut Struct_Sass_Compiler;
+  pub fn sass_compiler_parse(compiler: *mut Struct_Sass_Compiler)
+   -> ::libc::c_int;
+  pub fn sass_compiler_execute(compiler: *mut Struct_Sass_Compiler)
+   -> ::libc::c_int;
+  pub fn sass_delete_compiler(compiler: *mut Struct_Sass_Compiler) -> ();
+  pub fn sass_delete_file_context(ctx: *mut Struct_Sass_File_Context) -> ();
+  pub fn sass_delete_data_context(ctx: *mut Struct_Sass_Data_Context) -> ();
+  pub fn sass_file_context_get_context(file_ctx:
+                                           *mut Struct_Sass_File_Context)
+   -> *mut Struct_Sass_Context;
+  pub fn sass_data_context_get_context(data_ctx:
+                                           *mut Struct_Sass_Data_Context)
+   -> *mut Struct_Sass_Context;
+  pub fn sass_context_get_options(ctx: *mut Struct_Sass_Context)
+   -> *mut Struct_Sass_Options;
+  pub fn sass_file_context_get_options(file_ctx:
+                                           *mut Struct_Sass_File_Context)
+   -> *mut Struct_Sass_Options;
+  pub fn sass_data_context_get_options(data_ctx:
+                                           *mut Struct_Sass_Data_Context)
+   -> *mut Struct_Sass_Options;
+  pub fn sass_file_context_set_options(file_ctx:
+                                           *mut Struct_Sass_File_Context,
+                                       opt: *mut Struct_Sass_Options) -> ();
+  pub fn sass_data_context_set_options(data_ctx:
+                                           *mut Struct_Sass_Data_Context,
+                                       opt: *mut Struct_Sass_Options) -> ();
+  pub fn sass_option_get_precision(options: *mut Struct_Sass_Options)
+   -> ::libc::c_int;
+  pub fn sass_option_get_output_style(options: *mut Struct_Sass_Options)
+   -> Enum_Sass_Output_Style;
+  pub fn sass_option_get_source_comments(options: *mut Struct_Sass_Options)
+   -> u8;
+  pub fn sass_option_get_source_map_embed(options: *mut Struct_Sass_Options)
+   -> u8;
+  pub fn sass_option_get_source_map_contents(options:
+                                                 *mut Struct_Sass_Options)
+   -> u8;
+  pub fn sass_option_get_omit_source_map_url(options:
+                                                 *mut Struct_Sass_Options)
+   -> u8;
+  pub fn sass_option_get_is_indented_syntax_src(options:
+                                                    *mut Struct_Sass_Options)
+   -> u8;
+  pub fn sass_option_get_input_path(options: *mut Struct_Sass_Options)
+   -> *const ::libc::c_char;
+  pub fn sass_option_get_output_path(options: *mut Struct_Sass_Options)
+   -> *const ::libc::c_char;
+  pub fn sass_option_get_image_path(options: *mut Struct_Sass_Options)
+   -> *const ::libc::c_char;
+  pub fn sass_option_get_include_path(options: *mut Struct_Sass_Options)
+   -> *const ::libc::c_char;
+  pub fn sass_option_get_source_map_file(options: *mut Struct_Sass_Options)
+   -> *const ::libc::c_char;
+  pub fn sass_option_get_c_functions(options: *mut Struct_Sass_Options)
+   -> Sass_C_Function_List;
+  pub fn sass_option_get_importer(options: *mut Struct_Sass_Options)
+   -> Sass_C_Import_Callback;
+  pub fn sass_option_set_precision(options: *mut Struct_Sass_Options,
+                                   precision: ::libc::c_int) -> ();
+  pub fn sass_option_set_output_style(options: *mut Struct_Sass_Options,
+                                      output_style: Enum_Sass_Output_Style)
+   -> ();
+  pub fn sass_option_set_source_comments(options: *mut Struct_Sass_Options,
+                                         source_comments: u8) -> ();
+  pub fn sass_option_set_source_map_embed(options: *mut Struct_Sass_Options,
+                                          source_map_embed: u8) -> ();
+  pub fn sass_option_set_source_map_contents(options:
+                                                 *mut Struct_Sass_Options,
+                                             source_map_contents: u8) -> ();
+  pub fn sass_option_set_omit_source_map_url(options:
+                                                 *mut Struct_Sass_Options,
+                                             omit_source_map_url: u8) -> ();
+  pub fn sass_option_set_is_indented_syntax_src(options:
+                                                    *mut Struct_Sass_Options,
+                                                is_indented_syntax_src: u8)
+   -> ();
+  pub fn sass_option_set_input_path(options: *mut Struct_Sass_Options,
+                                    input_path: *const ::libc::c_char)
+   -> ();
+  pub fn sass_option_set_output_path(options: *mut Struct_Sass_Options,
+                                     output_path: *const ::libc::c_char)
+   -> ();
+  pub fn sass_option_set_image_path(options: *mut Struct_Sass_Options,
+                                    image_path: *const ::libc::c_char)
+   -> ();
+  pub fn sass_option_set_include_path(options: *mut Struct_Sass_Options,
+                                      include_path: *const ::libc::c_char)
+   -> ();
+  pub fn sass_option_set_source_map_file(options: *mut Struct_Sass_Options,
+                                         source_map_file:
+                                             *const ::libc::c_char) -> ();
+  pub fn sass_option_set_c_functions(options: *mut Struct_Sass_Options,
+                                     c_functions: Sass_C_Function_List)
+   -> ();
+  pub fn sass_option_set_importer(options: *mut Struct_Sass_Options,
+                                  importer: Sass_C_Import_Callback) -> ();
+  pub fn sass_context_get_output_string(ctx: *mut Struct_Sass_Context)
+   -> *const ::libc::c_char;
+  pub fn sass_context_get_error_status(ctx: *mut Struct_Sass_Context)
+   -> ::libc::c_int;
+  pub fn sass_context_get_error_json(ctx: *mut Struct_Sass_Context)
+   -> *const ::libc::c_char;
+  pub fn sass_context_get_error_message(ctx: *mut Struct_Sass_Context)
+   -> *const ::libc::c_char;
+  pub fn sass_context_get_error_file(ctx: *mut Struct_Sass_Context)
+   -> *const ::libc::c_char;
+  pub fn sass_context_get_error_line(ctx: *mut Struct_Sass_Context)
+   -> size_t;
+  pub fn sass_context_get_error_column(ctx: *mut Struct_Sass_Context)
+   -> size_t;
+  pub fn sass_context_get_source_map_string(ctx: *mut Struct_Sass_Context)
+   -> *const ::libc::c_char;
+  pub fn sass_context_get_included_files(ctx: *mut Struct_Sass_Context)
+   -> *mut *mut ::libc::c_char;
+  pub fn sass_context_take_error_json(ctx: *mut Struct_Sass_Context)
+   -> *mut ::libc::c_char;
+  pub fn sass_context_take_error_message(ctx: *mut Struct_Sass_Context)
+   -> *mut ::libc::c_char;
+  pub fn sass_context_take_error_file(ctx: *mut Struct_Sass_Context)
+   -> *mut ::libc::c_char;
+  pub fn sass_context_take_output_string(ctx: *mut Struct_Sass_Context)
+   -> *mut ::libc::c_char;
+  pub fn sass_context_take_source_map_string(ctx: *mut Struct_Sass_Context)
+   -> *mut ::libc::c_char;
+  pub fn sass_option_push_include_path(options: *mut Struct_Sass_Options,
+                                       path: *const ::libc::c_char) -> ();
 }
