@@ -1,5 +1,4 @@
 language: rust
-
 after_success: |
   [ $TRAVIS_BRANCH = master ] &&
   [ $TRAVIS_PULL_REQUEST = false ] &&
@@ -10,4 +9,5 @@ after_success: |
   git push -fq https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
 env:
   global:
-    secure: DfINQRjdWApAgC8gttvzg+uCXRnG6pCkLctuv9l5Qp+NL+Z5NK6gtv3oHCF4ClYw/e1uJ7n95N11ZvBnXTgjjfFISn12EEtyh4Mq9sAlvR4WmVxmrhADorftDnyVYPGqPr2E4rHD5lH96US7jxnOpnIsns37aqY03iS1rbDijCs=
+  - secure: DfINQRjdWApAgC8gttvzg+uCXRnG6pCkLctuv9l5Qp+NL+Z5NK6gtv3oHCF4ClYw/e1uJ7n95N11ZvBnXTgjjfFISn12EEtyh4Mq9sAlvR4WmVxmrhADorftDnyVYPGqPr2E4rHD5lH96US7jxnOpnIsns37aqY03iS1rbDijCs=
+  - secure: J2YsLK7FluPcvgR81xrT1b9J4bVQJJ+PxI6yGegFXXB6Y91CMGXYYNUuUMPnFBfYn36U+OOhfhT1WtcMeBbKYtABWzpcINpo+PQBSOl4LxY6vZFPSOMn6qpQoKhtXuRc1DmYD5VxYv6ooGtofZNkip/0al/owdCt/fVBxvbxhw4=
