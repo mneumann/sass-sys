@@ -10,15 +10,15 @@ fn main() {
     }
     let src = Path::new(os::getenv("CARGO_MANIFEST_DIR").unwrap());
     let mut cmd = Command::new("make");
-    let dst = Path::new(os::getenv("OUT_DIR").unwrap());
     cmd.cwd(&src.join("libsass"));
     run(& mut cmd);
 
     // copy to the output folder
+    let dst = Path::new(os::getenv("OUT_DIR").unwrap()).join("libsass");
     let _ = fs::copy(&src.join("libsass/lib/libsass.a"),&dst);
 
 
-    println!("cargo:rustc-flags=-l sass -l dylib=stdc++");
+    println!("cargo:rustc-flags=-l sass -L {} -l dylib=stdc++",dst.display());
 
 }
 
