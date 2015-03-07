@@ -12,8 +12,8 @@ fn main() {
     let mut cmd = Command::new("make");
     cmd.cwd(&src.join("libsass"));
     run(& mut cmd);
-  
-    println!("cargo:rustc-flags=-l sass -L libsass/lib/ -l c++");
+
+    println!("cargo:rustc-flags=-l sass -L libsass/lib/ -l dylib=stdc++");
 
 }
 
