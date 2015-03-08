@@ -1,4 +1,4 @@
-#![feature(fs,path,io)]
+#![feature(fs,path,path_ext,io)]
 extern crate "pkg-config" as pkg_config;
 
 use std::env;
