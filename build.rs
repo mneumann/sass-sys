@@ -1,5 +1,5 @@
-#![feature(fs,path,path_ext,io)]
-extern crate "pkg-config" as pkg_config;
+#![feature(path_ext)]
+extern crate pkg_config;
 
 use std::env;
 use std::fs::{self,PathExt};

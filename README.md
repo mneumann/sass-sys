@@ -9,3 +9,9 @@ Documentation: http://compass-rs.github.io/sass-sys/
 
 
 This project builds a version of libsass from sources.
+
+Instructions:
+
+1. git submodule init
+2. git submodule update
+3. cargo build
