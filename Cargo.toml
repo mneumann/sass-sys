@@ -15,3 +15,6 @@ documentation = "http://compass-rs.github.io/sass-sys/"
 
 [build-dependencies]
 pkg-config = "*"
+
+[dependencies]
+libc = "0.1"

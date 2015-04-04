@@ -1,8 +1,7 @@
-#![feature(path_ext)]
 extern crate pkg_config;
 
 use std::env;
-use std::fs::{self,PathExt};
+use std::fs;
 use std::path::{Path};
 use std::process::{Command};
 use std::io::{self,Write};
@@ -19,14 +18,14 @@ fn main() {
     let src = Path::new(&env::var("CARGO_MANIFEST_DIR").unwrap()).join(PROJECT);
     let archive = src.join("lib").join(ARCHIVE);
     // writeln!(&mut stderr,"looking for {}", archive.display()).unwrap();
-    if !archive.exists() {
+    if !fs::metadata(archive.as_path()).is_ok() {
         let mut make = Command::new("make");
         make.current_dir(&src);
         // writeln!(&mut stderr,"running: {:?}", make).unwrap();
         let _ = make.status().unwrap();
     }
     // writeln!(&mut stderr, "validating that archive exists").unwrap();
-    assert!(archive.exists(), "Error: archive does not exist after build");
+    assert!(fs::metadata(archive.as_path()).is_ok(), "Error: archive does not exist after build");
 
     // copy to the output folder
     let out = &env::var("OUT_DIR").unwrap();
