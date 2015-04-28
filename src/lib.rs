@@ -63,6 +63,12 @@ impl fmt::Debug for Struct_Sass_Options {
     }
 }
 
+impl fmt::Debug for Union_Sass_Value {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "Union_Sass_Value {:p}", self)
+    }
+}
+
 extern "C" {
   pub fn sass_value_get_tag(v: *const Union_Sass_Value) -> Enum_Sass_Tag;
   pub fn sass_value_is_null(v: *const Union_Sass_Value) -> u8;
