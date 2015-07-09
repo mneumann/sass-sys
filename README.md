@@ -15,3 +15,9 @@ Instructions:
 1. git submodule init
 2. git submodule update
 3. cargo build
+
+
+Contributors
+===========
+Jorge Israel Peña
+Marius Seritan
