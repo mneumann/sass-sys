@@ -51,8 +51,17 @@ fn main() {
             panic!("copy failed");
         }
     }
+    let target = env::var("TARGET").unwrap();
+    let darwin = target.contains("darwin");
+
+    let cplusplus = if darwin {
+        "c++"
+    } else {
+        "stdc++"
+    };
 
     // Link to libsass
-    println!("cargo:rustc-flags=-L native={} -l static=sass -l dylib=c++",
-             dst.display());
+    println!("cargo:rustc-flags=-L native={} -l static=sass -l dylib={}",
+             dst.display(),
+             cplusplus);
 }
