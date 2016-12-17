@@ -4,7 +4,7 @@ use std::env;
 use std::fs;
 use std::path::Path;
 use std::process::Command;
-use std::io::{self,Write};
+use std::io::{self, Write};
 
 static ARCHIVE: &'static str = "libsass.a";
 static PROJECT: &'static str = "libsass";
@@ -39,17 +39,20 @@ fn main() {
 
     // Copy archive to output directory
     match fs::copy(&archive, &dst.join(ARCHIVE)) {
-        Ok(_) => {},
+        Ok(_) => {}
         Err(a) => {
             let mut stderr = io::stderr();
             writeln!(&mut stderr,
                      "Error {:?} when copying {} to {}",
-                     a, archive.display(), dst.display()).unwrap();
+                     a,
+                     archive.display(),
+                     dst.display())
+                .unwrap();
             panic!("copy failed");
         }
     }
 
     // Link to libsass
-    println!("cargo:rustc-flags=-L native={} -l static=sass -l dylib=stdc++",
+    println!("cargo:rustc-flags=-L native={} -l static=sass -l dylib=c++",
              dst.display());
 }
