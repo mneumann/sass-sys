@@ -17,7 +17,7 @@ fn main() {
     }
 
     // Setup some paths
-    let manifest = env::var("CARGO_MANIFEST_DIR").unwrap();
+    let manifest = env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR not found");
     let src = Path::new(&manifest).join(PROJECT);
     let archive = src.join("lib").join(ARCHIVE);
 
@@ -25,7 +25,7 @@ fn main() {
     if !fs::metadata(archive.as_path()).is_ok() {
         let mut make = Command::new("make");
         make.current_dir(&src);
-        let _ = make.status().unwrap();
+        let _ = make.status().expect("Couldn't get status of make");
     }
 
     // Verify that libsass was build correctly
@@ -33,9 +33,9 @@ fn main() {
             "Error: archive does not exist after build");
 
     // Setup output directory
-    let out = &env::var("OUT_DIR").unwrap();
+    let out = &env::var("OUT_DIR").expect("OUT_DIR not found");
     let dst = Path::new(out);
-    let _ = fs::create_dir_all(&dst).unwrap();
+    let _ = fs::create_dir_all(&dst).expect("Cannot create destination directory");
 
     // Copy archive to output directory
     match fs::copy(&archive, &dst.join(ARCHIVE)) {
@@ -51,7 +51,7 @@ fn main() {
             panic!("copy failed");
         }
     }
-    let target = env::var("TARGET").unwrap();
+    let target = env::var("TARGET").expect("TARGET not found");
     let darwin = target.contains("darwin");
 
     let cplusplus = if darwin {
