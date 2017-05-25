@@ -6,8 +6,10 @@ use std::path::Path;
 use std::process::Command;
 use std::io::{self, Write};
 
-static ARCHIVE: &'static str = "libsass.a";
 static PROJECT: &'static str = "libsass";
+
+static ARCHIVE: &'static str = "libsass.a";
+static ARCHIVE_WINDOWS: &'static str = "libsass.lib";
 
 fn main() {
     // See if sass is already setup
@@ -17,15 +19,31 @@ fn main() {
     }
 
     // Setup some paths
+    let target = env::var("TARGET").expect("TARGET not found");
     let manifest = env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR not found");
     let src = Path::new(&manifest).join(PROJECT);
-    let archive = src.join("lib").join(ARCHIVE);
+    let is_windows = target.contains("windows");
+    let is_darwin = target.contains("darwin");
+    let archive = if is_windows {
+        src.join("win").join("bin").join(ARCHIVE_WINDOWS)
+    } else {
+        src.join("lib").join(ARCHIVE)
+    };
 
     // Run make on libsass
     if !fs::metadata(archive.as_path()).is_ok() {
-        let mut make = Command::new("make");
-        make.current_dir(&src);
-        let _ = make.status().expect("Couldn't get status of make");
+        if !is_windows {
+            let mut make = Command::new("make");
+            make.current_dir(&src);
+            let _ = make.status().expect("Couldn't get status of make");
+        } else {
+            let mut msbuild = Command::new("msbuild");
+            msbuild.arg("win\\libsass.sln");
+            msbuild.arg("/p:LIBSASS_STATIC_LIB=1");
+            msbuild.arg("/p:Configuration=Release");
+            msbuild.current_dir(&src);
+            let _ = msbuild.status().expect("Couldn't get status of msbuild");
+        }
     }
 
     // Verify that libsass was build correctly
@@ -38,7 +56,7 @@ fn main() {
     let _ = fs::create_dir_all(&dst).expect("Cannot create destination directory");
 
     // Copy archive to output directory
-    match fs::copy(&archive, &dst.join(ARCHIVE)) {
+    match fs::copy(&archive, &dst.join(if is_windows { ARCHIVE_WINDOWS } else { ARCHIVE })) {
         Ok(_) => {}
         Err(a) => {
             let mut stderr = io::stderr();
@@ -51,17 +69,12 @@ fn main() {
             panic!("copy failed");
         }
     }
-    let target = env::var("TARGET").expect("TARGET not found");
-    let darwin = target.contains("darwin");
-
-    let cplusplus = if darwin {
-        "c++"
-    } else {
-        "stdc++"
-    };
 
     // Link to libsass
-    println!("cargo:rustc-flags=-L native={} -l static=sass -l dylib={}",
-             dst.display(),
-             cplusplus);
+    println!(
+        "cargo:rustc-flags=-L native={} -l static={} -l dylib={}",
+        dst.display(),
+        if is_windows { "libsass" } else { "sass" },
+        if is_darwin { "c++" } else { "stdc++ "}
+    );
 }
