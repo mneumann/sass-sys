@@ -7,18 +7,16 @@ Low level Rust wrapper for the C/C++ libsass.
 
 Documentation: https://docs.rs/sass-sys/
 
-This currently uses libsass 3.4.5
-
-This project builds a version of libsass from sources.
+This currently uses libsass 3.4.5 and builds it from sources.
 
 Instructions:
 
-1. git submodule init
-2. git submodule update
-3. cargo build
+1. git submodule update --init
+2. cargo build
 
 
 Contributors
 ===========
-Jorge Israel Peña
-Marius Seritan
+
+- Jorge Israel Peña
+- Marius Seritan
