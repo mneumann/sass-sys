@@ -57,6 +57,9 @@ fn main() {
     let src = Path::new(&manifest).join(PROJECT);
     let is_windows = target.contains("windows");
     let is_darwin = target.contains("darwin");
+    let is_bsd = target.contains("dragonfly") || target.contains("freebsd") ||
+        target.contains("netbsd") || target.contains("openbsd");
+
     let archive = if is_windows {
         src.join("win").join("bin").join(ARCHIVE_WINDOWS)
     } else {
@@ -66,7 +69,7 @@ fn main() {
     // Run make on libsass
     if !fs::metadata(archive.as_path()).is_ok() {
         if !is_windows {
-            let mut make = Command::new("make");
+            let mut make = Command::new(if is_bsd { "gmake" } else { "make" });
             make.current_dir(&src);
             let _ = make.status().expect("Couldn't get status of make");
         } else {
